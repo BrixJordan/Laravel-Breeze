@@ -27,10 +27,20 @@
             </header>
         @endisset
 
+        <div class="flex">
+        @yield('sidebar')
+        
+        
+
         <!-- Page Content -->
         <main>
             @yield('content') <!-- Make sure this is correct -->
         </main>
+        </div>
+
+        
     </div>
+    
+
 </body>
 </html>
