@@ -12,6 +12,8 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $products = Product::all();
+        return view('admin.product', compact('products'));
         //
     }
 
@@ -33,6 +35,8 @@ class ProductController extends Controller
             'product_description' => 'required|string',
             'product_price' => 'required|numeric|min:0',
             'product_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'product_stock' => 'required|integer|min:0',
+            'product_status' => 'required|string|in:available,out_of_stock',
 
         ]);
 
@@ -43,9 +47,11 @@ class ProductController extends Controller
             'product_description' => $validated['product_description'],
             'product_price' => $validated['product_price'],
             'product_image' => $imagepath,
+            'product_stock' => $validated['product_stock'],
+            'product_status' => $validated['product_status'],
         ]);
 
-        return redirect()->route('admin.product')->with('success', 'Product Added Sucessfully!');
+        return redirect()->route('admin.product')->with('success', 'Product added successfully!');
 
         //
     }

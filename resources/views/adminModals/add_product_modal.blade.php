@@ -41,6 +41,30 @@
     </div>
 
     <div class="mb-4">
+                    <label for="product_stock" class="block text-sm font-medium text-gray-700">Product Stock</label>
+                    <input
+                        type="number"
+                        name="product_stock"
+                        id="product_stock"
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        required
+                    >
+                </div>
+
+                <div class="mb-4">
+                    <label for="product_status" class="block text-sm font-medium text-gray-700">Product Status</label>
+                    <select
+                        name="product_status"
+                        id="product_status"
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        required
+                    >
+                        <option value="available">Available</option>
+                        <option value="out_of_stock">Out of Stock</option>
+                    </select>
+                </div>
+
+    <div class="mb-4">
         <label for="product_image" class="block text-sm font-medium text-gray-700">Product Image</label>
         <input 
             type="file" 
@@ -50,6 +74,8 @@
             class="mt-1 block w-full text-sm text-gray-700 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
             required>
     </div>
+
+    
 
     <div class="flex justify-end">
         <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Save Product</button>
