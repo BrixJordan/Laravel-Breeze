@@ -7,7 +7,7 @@
             <button class="text-gray-400 hover:text-gray-600" id="closeModal">&times;</button>
         </div>
         <div class="p-4">
-            <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-4">
                     <label for="product_name" class="block text-sm font-medium text-gray-700">Product Name</label>
