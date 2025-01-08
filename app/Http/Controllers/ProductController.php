@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -76,16 +77,52 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
-    {
-        //
+    public function update(Request $request, $id)
+{
+    $request->validate([
+        'product_name' =>  'required|string|max:255',
+        'product_description' => 'required|string',
+        'product_price' => 'required|numeric|min:0',
+        'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'product_stock' => 'required|integer|min:0',
+        'product_status' => 'required|string|in:available,out_of_stock',
+    ]);
+
+   
+    $product = Product::findOrFail($id);
+
+    $product->product_name = $request->product_name;
+    $product->product_description = $request->product_description;
+    $product->product_price = $request->product_price;
+    $product->product_stock = $request->product_stock;
+    $product->product_status = $request->product_status;
+
+    if ($request->hasFile('product_image')) {
+        if ($product->product_image && \Storage::exists('public/' . $product->product_image)) {
+            \Storage::delete('public/' . $product->product_image);
+        }
+
+        $product->product_image = $request->file('product_image')->store('product_images', 'public');
     }
+
+
+    $product->save();
+
+    return redirect()->route('admin.product')->with('success', 'Product updated successfully!');
+}
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy( $id)
     {
+        $product = Product::findorFail($id);
+        if($product->product_image && \Storage::exists('public/' . $product->product_image)){
+            \Storage::delete('public/' . $product->product_image);
+        }
+        $product->delete();
+        return redirect()->route('admin.product')->with('success', 'Product deleted successfully!');
         //
     }
 }

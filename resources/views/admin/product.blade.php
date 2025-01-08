@@ -37,6 +37,23 @@
         </td>
         <td class="p-2 border">{{ $product->product_stock}}</td>
         <td class="p-2 border">{{ $product->product_status }}</td>
+        <td class="p-2 border">
+            <!-- edit button modal din sya katulad dun sapag add ko ng product-->
+            <button class="px-2 py-1 text-white bg-yellow-500 rounded hover:bg-yellow-600 openEditModalButton" data-product-id="{{ $product->id }}">Edit</button>
+            
+
+            @include('adminModals.edit_product_modal')
+
+           
+             
+             <!-- delete button -->
+              <form action="{{route('product.destroy', $product->id)}}" method="post" class="inline-block">
+                @csrf 
+                
+                @method('DELETE')
+                <button type="submit" class="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+              </form>
+        </td>
     </tr>
     @endforeach
     

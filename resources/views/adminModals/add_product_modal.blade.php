@@ -89,25 +89,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script>
     // Get modal and buttons
     const modal = document.getElementById('modal');
