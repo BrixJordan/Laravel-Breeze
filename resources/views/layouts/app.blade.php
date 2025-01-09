@@ -38,6 +38,15 @@
         </main>
         </div>
 
+        <div class="flex">
+            @yield('topbar')
+
+            <main>
+                @yield('content')
+</main>
+
+        </div>
+
         
     </div>
     

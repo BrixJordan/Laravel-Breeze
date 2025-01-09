@@ -11,7 +11,3 @@
     </ul>
 </div>
 @endsection
-
-@section('content')
-<h1>Welcome to Admindashboard</h1>
-@endsection
