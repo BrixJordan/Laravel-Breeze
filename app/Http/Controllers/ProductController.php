@@ -125,4 +125,12 @@ class ProductController extends Controller
         return redirect()->route('admin.product')->with('success', 'Product deleted successfully!');
         //
     }
+
+    public function updateStatus(Request $request, $id){
+        $product= Product::findOrFail($id);
+        $product->product_status = $product->product_status === 'availble' ? 'out_of_stock' : 'available';
+        $product->save();
+
+        return response()->json(['success' => true, 'status' =>$product->product_status]);
+    }
 }
