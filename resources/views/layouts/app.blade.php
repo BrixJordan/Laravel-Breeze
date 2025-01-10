@@ -28,27 +28,31 @@
         @endisset
 
         <div class="flex">
-        @yield('sidebar')
-        
+            @yield('topbar')   
+            
+           
+
+        </div>
         
 
+        <div class="flex">
+        @yield('sidebar')
         <!-- Page Content -->
         <main>
             @yield('content') <!-- Make sure this is correct -->
         </main>
+       
         </div>
+        <main>
+            @yield('usercontent') <!-- Make sure this is correct -->
+        </main>
+        
 
-        <div class="flex">
-            @yield('topbar')
-
-            <main>
-                @yield('content')
-</main>
-
-        </div>
+        
 
         
     </div>
+    
     
 
 </body>
