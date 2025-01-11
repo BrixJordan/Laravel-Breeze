@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,11 +20,17 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 });
 
 //User navigation routes
-
 Route::get('product', [UserController::class, 'product'])->name('user.product');
 Route::get('cart', [UserController::class, 'cart'])->name('user.cart');
 Route::get('order', [UserController::class, 'order'])->name('user.order');
 Route::get('receipt', [UserController::class, 'receipt'])->name('user.receipt');
+
+//display ng product sa users
+Route::get('product', [ProductController::class, 'showProduct'])->name('user.product');
+
+//add to cart
+Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

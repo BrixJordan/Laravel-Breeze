@@ -18,6 +18,12 @@ class ProductController extends Controller
         //
     }
 
+    public function showProduct()
+    {
+        $products = Product::all();
+        return view('user.product', compact('products'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -128,7 +134,7 @@ class ProductController extends Controller
 
     public function updateStatus(Request $request, $id){
         $product= Product::findOrFail($id);
-        $product->product_status = $product->product_status === 'availble' ? 'out_of_stock' : 'available';
+        $product->product_status = $product->product_status === 'available' ? 'out_of_stock' : 'available';
         $product->save();
 
         return response()->json(['success' => true, 'status' =>$product->product_status]);
