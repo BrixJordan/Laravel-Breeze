@@ -15,6 +15,11 @@ class UserController extends Controller
         return view('user.cart');
     }
 
+    public function checkout()
+    {
+        return view('user.checkout');
+    }
+
     public function order(){
         return view('user.order');
     }

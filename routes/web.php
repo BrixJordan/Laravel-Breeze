@@ -22,14 +22,21 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 //User navigation routes
 Route::get('product', [UserController::class, 'product'])->name('user.product');
 Route::get('cart', [UserController::class, 'cart'])->name('user.cart');
+Route::get('checkout', [UserController::class, 'checkout'])->name('user.checkout');
 Route::get('order', [UserController::class, 'order'])->name('user.order');
 Route::get('receipt', [UserController::class, 'receipt'])->name('user.receipt');
 
 //display ng product sa users
 Route::get('product', [ProductController::class, 'showProduct'])->name('user.product');
 
+
+
 //add to cart
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+//update cart
+Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
+//checkout
+Route::post('cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 
 
 Route::get('/dashboard', function () {

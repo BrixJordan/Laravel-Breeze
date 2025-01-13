@@ -29,4 +29,34 @@ class CartController extends Controller
 
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
+
+    public function updateCart(Request $request)
+    {
+        $cart = session()->get('cart', []);
+
+        foreach ($request->quantities as $id => $quantity){
+            if(isset($cart[$id])){
+                $cart[$id]['quantity'] = $quantity;
+            }
+        }
+
+        session()->put('cart', $cart);
+
+        return redirect()->back();
+    }
+
+    public function checkout(Request $request){
+        $selectedProducts = $request->input('selected_products', []);
+        $cart = session()->get('cart', []);
+
+        $checkoutItems = [];
+        foreach ($selectedProducts as $productId){
+            if(isset($cart[$productId])){
+                $checkoutItems[$productId] = $cart[$productId];
+            }
+        }
+
+        return view('user.checkout', compact('checkoutItems'));
+
+    }
 }

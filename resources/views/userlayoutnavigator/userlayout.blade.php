@@ -6,7 +6,8 @@
         <li><a href="{{route('dashboard')}}" class="block py-2 px-4 hover:bg-blue-500">Home</a></li>
         <li><a href="{{route('user.product')}}" class="block py-2 px-4 hover:bg-blue-500">Products</a></li>
         <li><a href="{{route('user.cart')}}" class="block py-2 px-4 hover:bg-blue-500">Cart</a></li>
-        <li><a href="{{route('user.order')}}" class="block py-2 px-4 hover:bg-blue-500">Track Orders</a></li>
+        <li><a href="{{route('user.checkout')}}" class="block py-2 px-4 hover:bg-blue-500">Checkout</a></li>
+        <li><a href="{{route('user.order')}}" class="block py-2 px-4 hover:bg-blue-500">Orders</a></li>
         <li><a href="{{route('user.receipt')}}" class="block py-2 px-4 hover:bg-blue-500">Reciept</a></li>
     </ul>
 
