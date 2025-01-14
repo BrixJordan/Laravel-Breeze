@@ -18,6 +18,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('inventory', [AdminController::class, 'inventory'])->name('inventory');
     Route::get('sale', [AdminController::class, 'sale'])->name('sale');
     Route::get('customer', [AdminController::class, 'customer'])->name('customer');
+    Route::get('order', [AdminController::class, 'order'])->name('order');
 });
 
 //User navigation routes
@@ -62,6 +63,12 @@ Route::post('/product', [ProductController::class, 'store'])->name('product.stor
 Route::delete('product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 Route::put('product/{id}', [ProductController::class, 'update'])->name('product.update');
 Route::post('/product/update-status/{id}', [ProductController::class, 'updateStatus'])->name('product.updateStatus');
+
+//orders
+Route::get('/admin/order', [OrderController::class, 'index'])->name('admin.order');
+
+
+
 
 
 require __DIR__.'/auth.php';

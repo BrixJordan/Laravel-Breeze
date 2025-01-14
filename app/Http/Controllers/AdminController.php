@@ -22,6 +22,11 @@ class AdminController extends Controller
 
     }
 
+    public function order()
+    {
+        return view('admin.order');
+    }
+
     public function sale()
     {
         return view('admin.sale');
