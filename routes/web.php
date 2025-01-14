@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -37,6 +38,9 @@ Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add')
 Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
 //checkout
 Route::post('cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::post('checkout', [OrderController::class, 'store'])->name('checkout.store');
+
+
 
 
 Route::get('/dashboard', function () {

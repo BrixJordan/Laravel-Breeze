@@ -23,7 +23,7 @@
             <p class="text-gray-700">Total Price: ₱{{ number_format(collect($checkoutItems)->sum(fn($item) => $item['quantity'] * $item['price']), 2) }}</p>
             
             <!-- Address and Contact -->
-            <form action="#" method="post" class="mt-4">
+            <form action="{{route('checkout.store')}}" method="post" class="mt-4">
                 @csrf
                 <label for="address" class="block text-gray-600">Shipping Address:</label>
                 <input type="text" name="address" id="address" required class="w-full border rounded px-3 py-2 mb-4">
