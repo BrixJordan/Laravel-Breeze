@@ -9,38 +9,38 @@
 <button class="px-4 py-4 bg-red-500 text-white rounded hover:bg-red-600" id="openModal">Add Product</button>
 @include('adminModals.add_product_modal')
 
-<div class="mt-8">
+<div class="overflow-x-auto">
     <h2 class="text-lg font-bold">Product List</h2>
     <div class="overflow-x-auto">
-    <table class="min-w-full mt-4 border border-gray-200">
+    <table class="min-w-full bg-white border border-gray-200">
         <thead>
-            <tr class="bg-gray-100">
-                <th class="p-2 border">ID</th>
-                <th class="p-2 border">NAME</th>
-                <th class="p-2 border">DESCRIPTION</th>
-                <th class="p-2 border">PRICE</th>
-                <th class="p-2 border">IMAGE</th>
-                <th class="p-2 border">STOCK</th>
-                <th class="p-2 border">STATUS</th>
-                <th class="p-2 border">ACTION</th>
+            <tr >
+                <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">ID</th>
+                <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">NAME</th>
+                <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">DESCRIPTION</th>
+                <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">PRICE</th>
+                <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">IMAGE</th>
+                <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">STOCK</th>
+                <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">STATUS</th>
+                <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">ACTION</th>
             </tr>
         </thead>
         <tbody>
         @foreach ($products as $product)
     <tr>
-        <td class="p-2 border">{{ $product->id }}</td>
-        <td class="p-2 border">{{ $product->product_name }}</td>
-        <td class="p-2 border">{{ $product->product_description }}</td>
-        <td class="p-2 border">{{ $product->product_price }}</td>
-        <td class="p-2 border">
+        <td class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">{{ $product->id }}</td>
+        <td class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">{{ $product->product_name }}</td>
+        <td class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">{{ $product->product_description }}</td>
+        <td class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">{{ $product->product_price }}</td>
+        <td class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">
             <img src="{{ asset('storage/' . $product->product_image) }}" alt="{{ $product->product_name }}" class="w-16 h-16 object-cover">
         </td>
-        <td class="p-2 border">{{ $product->product_stock}}</td>
-        <td class="p-2 border"><button 
+        <td class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">{{ $product->product_stock}}</td>
+        <td class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600"><button 
         class="px-2 py-1 rounded {{$product->product_status == 'available' ? 'bg-green-500' : 'bg-gray-500' }} text-white toggleStatusButton"
         data-product-id="{{$product->id}}"
         data-status="{{$product->product_status}}">{{ucfirst($product->product_status)}}</button></td>
-        <td class="p-2 border">
+        <td class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">
             <button class="px-2 py-1 text-white bg-yellow-500 rounded hover:bg-yellow-600 openEditModalButton" data-product-id="{{ $product->id }}">Edit</button>
             @include('adminModals.edit_product_modal')
             <!-- delete button -->

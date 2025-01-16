@@ -22,6 +22,8 @@
                         <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">Payment Method</th>
                         <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">Total Amount</th>
                         <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">Order Details</th>
+                        <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-600">Status</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +36,21 @@
                             <td class="py-2 px-4 border-b text-sm text-gray-700">{{ $order->mode_of_payment }}</td>
                             <td class="py-2 px-4 border-b text-sm text-gray-700">{{ number_format($order->total_amount, 2) }}</td>
                             <td class="py-2 px-4 border-b text-sm text-gray-700">{{ $order->order_details }}</td>
+                            <td class="py-2 px-4 border-b text-sm text-gray-700">
+    @if($order->status === 'pending')
+        <form action="{{ route('orders.updateStatus', $order->id) }}" method="POST">
+            @csrf
+            @method('PATCH')
+            <button type="submit" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+                Out For Delivery
+            </button>
+        </form>
+    @else
+        {{ $order->status }}
+    @endif
+</td>
+
+
                         </tr>
                     @endforeach
                 </tbody>

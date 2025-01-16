@@ -14,7 +14,9 @@ class Order extends Model
         'contact_number',
         'mode_of_payment',
         'order_details',
-        'total_amount'
+        'total_amount',
+        'status'
+        
     ];
 
     public function user()

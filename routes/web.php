@@ -64,8 +64,20 @@ Route::delete('product/{id}', [ProductController::class, 'destroy'])->name('prod
 Route::put('product/{id}', [ProductController::class, 'update'])->name('product.update');
 Route::post('/product/update-status/{id}', [ProductController::class, 'updateStatus'])->name('product.updateStatus');
 
-//orders
+//orders admin side
 Route::get('/admin/order', [OrderController::class, 'index'])->name('admin.order');
+
+//orders user side
+Route::get('/user/order', [OrderController::class, 'userOrders'])->name('user.order');
+
+//status for order
+Route::patch('/orders/{order}/out-for-delivery', [OrderController::class, 'markOutForDelivery'])->name('orders.outForDelivery');
+
+//status for order
+Route::patch('/order/{id}/status', [OrderController::class, 'updateOrderStatus'])->name('orders.updateStatus');
+
+//status for order in user
+Route::patch('orders/{order}/mark-as-received', [OrderController::class, 'userMarkAsReceived'])->name('orders.userReceived');
 
 
 

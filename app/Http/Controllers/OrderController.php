@@ -13,8 +13,14 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Order::with('user')->paginate(10); // Adjust the number 10 for the number of items per page
+        $orders = Order::with('user')->paginate(10); 
         return view('admin.order', compact('orders'));
+    }
+
+    public function userOrders(){
+        $orders = Order::where('user_id', auth()->id())->orderBy('created_at', 'desc')->get();
+        
+        return view('user.order', compact('orders'));
     }
     
     public function store(Request $request)
@@ -47,6 +53,7 @@ class OrderController extends Controller
         'mode_of_payment' => $request->payment_method,
         'total_amount' => $total_amount,
         'order_details' => $order_details, 
+        'status' => 'pending',
     ]);
 
     foreach ($cart as $productId => $item) {
@@ -63,7 +70,37 @@ class OrderController extends Controller
     return redirect()->route('user.order')->with('success', 'Order placed successfully!');
 }
 
+public function markOutForDelivery(Order $order)
+{
+    $order->update(['status' => 'Out for Delivery']);
 
+    return redirect()->back()->with('success', 'Order Marked as Out For Delivery');
+}
+
+public function updateOrderStatus($id)
+{
+    $order = Order::find($id);
+    if($order){
+        $order->status = 'Out for Delivery';
+        $order->save();
+
+        return redirect()->back()->with('success', 'Order Status Updated!');
+    }
+
+    return redirect()->back()->with('error', 'Order not found!');
+}
+
+public function userMarkAsReceived($orderId)
+{
+    $order = Order::findOrFail($orderId);
+    if($order->status === 'Out for Delivery'){
+        $order->status = 'Delivered';
+        $order->save();
+
+        return redirect()->back()->with('success', 'Order marked as received');
+    }
+    return redirect()->back()->with('error', 'invalid!');
+}
 
 
 
